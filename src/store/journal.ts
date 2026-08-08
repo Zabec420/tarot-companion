@@ -16,24 +16,37 @@ export interface JournalEntry {
   notes: string
 }
 
+/** Freeform diary note (not tied to a reading) */
+export interface JournalNote {
+  id: string
+  createdAt: string
+  updatedAt: string
+  title: string
+  body: string
+  mood?: string
+}
+
 export interface JournalState {
   entries: JournalEntry[]
+  notes: JournalNote[]
 }
 
 export const DEFAULT_JOURNAL: JournalState = {
   entries: [],
+  notes: [],
 }
 
 export function loadJournal(): JournalState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (!raw) return { ...DEFAULT_JOURNAL, entries: [] }
+    if (!raw) return { entries: [], notes: [] }
     const parsed = JSON.parse(raw) as Partial<JournalState>
     return {
       entries: Array.isArray(parsed.entries) ? parsed.entries : [],
+      notes: Array.isArray(parsed.notes) ? parsed.notes : [],
     }
   } catch {
-    return { ...DEFAULT_JOURNAL, entries: [] }
+    return { entries: [], notes: [] }
   }
 }
 

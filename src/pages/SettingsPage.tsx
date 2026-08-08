@@ -8,7 +8,7 @@ export function SettingsPage() {
 
   function handleClear() {
     const ok = window.confirm(
-      'Clear all journal entries? This cannot be undone.',
+      'Clear all journal readings and notes? This cannot be undone.',
     )
     if (!ok) return
     clearJournal()
@@ -29,7 +29,9 @@ export function SettingsPage() {
         <h2>Journal</h2>
         <p>
           You have {state.entries.length} saved{' '}
-          {state.entries.length === 1 ? 'reading' : 'readings'} on this device.
+          {state.entries.length === 1 ? 'reading' : 'readings'} and{' '}
+          {state.notes.length}{' '}
+          {state.notes.length === 1 ? 'note' : 'notes'} on this device.
         </p>
         <button type="button" className="btn btn-danger" onClick={handleClear}>
           Clear Journal

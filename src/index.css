@@ -730,6 +730,117 @@ textarea {
   font-style: italic;
 }
 
+.journal-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 4px;
+  border-radius: 999px;
+  background: rgba(20, 8, 36, 0.55);
+  border: 1px solid rgba(232, 200, 106, 0.2);
+}
+
+.journal-tab {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-weight: 700;
+  padding: 0.75rem 0.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.journal-tab.active {
+  background: linear-gradient(180deg, #7b4bb8, #5a2f8a);
+  color: #fff8ef;
+  box-shadow: 0 4px 0 rgba(232, 200, 106, 0.25);
+}
+
+.note-composer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.note-composer .section-title {
+  margin: 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 1.25rem;
+  color: var(--gold);
+}
+
+.card-panel {
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(232, 200, 106, 0.22);
+  background: rgba(42, 20, 69, 0.4);
+}
+
+.stack-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea,
+.field select {
+  font: inherit;
+  color: var(--text);
+  background: rgba(20, 8, 36, 0.65);
+  border: 1px solid rgba(232, 200, 106, 0.28);
+  border-radius: 14px;
+  padding: 0.85rem 0.95rem;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: rgba(232, 200, 106, 0.7);
+  box-shadow: 0 0 0 3px rgba(123, 75, 184, 0.35);
+}
+
+.mood-chip {
+  align-self: flex-start;
+  display: inline-flex;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(123, 75, 184, 0.35);
+  border: 1px solid rgba(232, 200, 106, 0.3);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.note-body {
+  font-style: normal;
+  white-space: pre-wrap;
+  line-height: 1.55;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .settings-block {
   padding: 18px;
   border-radius: var(--radius);

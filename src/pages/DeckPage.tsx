@@ -15,11 +15,28 @@ const FILTERS: { id: Suit | 'all'; label: string }[] = [
 
 export function DeckPage() {
   const [filter, setFilter] = useState<Suit | 'all'>('all')
+  const [query, setQuery] = useState('')
 
   const cards = useMemo(() => {
-    if (filter === 'all') return DECK
-    return DECK.filter((c) => c.suit === filter)
-  }, [filter])
+    const q = query.trim().toLowerCase()
+    return DECK.filter((c) => {
+      if (filter !== 'all' && c.suit !== filter) return false
+      if (!q) return true
+      const haystack = [
+        c.name,
+        c.suit,
+        c.arcana,
+        c.description,
+        c.meaningUpright,
+        c.meaningReversed,
+        ...c.keywordsUpright,
+        ...c.keywordsReversed,
+      ]
+        .join(' ')
+        .toLowerCase()
+      return haystack.includes(q)
+    })
+  }, [filter, query])
 
   return (
     <div className="page-stack">
@@ -27,6 +44,17 @@ export function DeckPage() {
         <h1>Deck Library</h1>
         <p>Browse all 78 Rider-Waite-Smith cards.</p>
       </header>
+
+      <label className="field deck-search">
+        <span className="visually-hidden">Search cards</span>
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="Search by name, keyword, or meaning"
+          autoComplete="off"
+        />
+      </label>
 
       <div className="filter-row" role="tablist" aria-label="Suit filter">
         {FILTERS.map((f) => (
@@ -43,14 +71,20 @@ export function DeckPage() {
         ))}
       </div>
 
-      <div className="deck-grid">
-        {cards.map((card) => (
-          <Link key={card.id} to={`/deck/${card.id}`} className="deck-tile">
-            <CardImage card={card} size="sm" />
-            <span className="deck-tile-name">{card.name}</span>
-          </Link>
-        ))}
-      </div>
+      {cards.length === 0 ? (
+        <div className="empty-state">
+          <p>No cards match that search.</p>
+        </div>
+      ) : (
+        <div className="deck-grid">
+          {cards.map((card) => (
+            <Link key={card.id} to={`/deck/${card.id}`} className="deck-tile">
+              <CardImage card={card} size="sm" />
+              <span className="deck-tile-name">{card.name}</span>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

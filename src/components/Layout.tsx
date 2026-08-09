@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/spreads', label: 'Spreads' },
+  { to: '/crystals', label: 'Crystals' },
   { to: '/deck', label: 'Deck' },
   { to: '/journal', label: 'Journal' },
 ]
@@ -17,8 +18,8 @@ export function Layout() {
             ◐
           </span>
           <div className="brand-text">
-            <strong>Tarot Companion</strong>
-            <span>Read · Reflect · Remember</span>
+            <strong>Mystic Companion</strong>
+            <span>Tarot · Crystals · Journal</span>
           </div>
         </div>
         <NavLink to="/settings" className="settings-chip">

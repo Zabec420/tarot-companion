@@ -9,9 +9,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
-        name: 'Tarot Companion',
-        short_name: 'Tarot',
-        description: 'Daily tarot pulls, spreads, and journal for seekers.',
+        name: 'Mystic Companion',
+        short_name: 'Mystic',
+        description: 'Tarot pulls, crystal library, and journal for seekers.',
         theme_color: '#4b1d6a',
         background_color: '#1a0b2e',
         display: 'standalone',

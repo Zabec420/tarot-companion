@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { CardPage } from './pages/CardPage'
+import { CrystalPage } from './pages/CrystalPage'
+import { CrystalsPage } from './pages/CrystalsPage'
 import { DeckPage } from './pages/DeckPage'
 import { HomePage } from './pages/HomePage'
 import { JournalPage } from './pages/JournalPage'
@@ -18,6 +20,8 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="spreads" element={<SpreadsPage />} />
             <Route path="reading/:spreadId" element={<ReadingPage />} />
+            <Route path="crystals" element={<CrystalsPage />} />
+            <Route path="crystals/:crystalId" element={<CrystalPage />} />
             <Route path="deck" element={<DeckPage />} />
             <Route path="deck/:cardId" element={<CardPage />} />
             <Route path="journal" element={<JournalPage />} />

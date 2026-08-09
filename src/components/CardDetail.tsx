@@ -6,6 +6,8 @@ interface CardDetailProps {
   reversed?: boolean
   showBothMeanings?: boolean
   position?: string
+  /** When true, skip the card image (e.g. parent already showed a draw reveal). */
+  hideImage?: boolean
 }
 
 export function CardDetail({
@@ -13,6 +15,7 @@ export function CardDetail({
   reversed = false,
   showBothMeanings = false,
   position,
+  hideImage = false,
 }: CardDetailProps) {
   const keywords = reversed ? card.keywordsReversed : card.keywordsUpright
   const meaning = reversed ? card.meaningReversed : card.meaningUpright
@@ -20,7 +23,9 @@ export function CardDetail({
   return (
     <article className="card-detail">
       {position && <p className="position-label">{position}</p>}
-      <CardImage card={card} reversed={reversed} size="lg" />
+      {!hideImage && (
+        <CardImage card={card} reversed={reversed} size="lg" animateReverse={false} />
+      )}
       <header className="card-detail-header">
         <h2>{card.name}</h2>
         <p className="card-meta">

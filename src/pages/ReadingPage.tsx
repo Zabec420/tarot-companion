@@ -5,6 +5,7 @@ import { getSpread } from '../data/spreads'
 import type { DrawnCard } from '../data/types'
 import { CardDetail } from '../components/CardDetail'
 import { CardImage } from '../components/CardImage'
+import { DrawReveal } from '../components/DrawReveal'
 import { useJournal } from '../store/JournalContext'
 
 export function ReadingPage() {
@@ -98,11 +99,17 @@ export function ReadingPage() {
           </div>
 
           {active && (
-            <CardDetail
-              card={active.card}
-              reversed={active.reversed}
-              position={active.position}
-            />
+            <DrawReveal
+              key={`${active.card.id}-${activeIndex}-${active.reversed ? 'r' : 'u'}`}
+              drawn={active}
+            >
+              <CardDetail
+                card={active.card}
+                reversed={active.reversed}
+                position={active.position}
+                hideImage
+              />
+            </DrawReveal>
           )}
 
           <label className="field">

@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { drawCards } from '../data/draw'
 import type { DrawnCard } from '../data/types'
 import { CardDetail } from '../components/CardDetail'
+import { DrawReveal } from '../components/DrawReveal'
 import { useJournal } from '../store/JournalContext'
 
 export function HomePage() {
@@ -39,8 +41,29 @@ export function HomePage() {
     <div className="page-stack">
       <header className="page-hero">
         <h1>Daily Pull</h1>
-        <p>Draw one card for today. Sit with the image, then note what lands.</p>
+        <p>Draw a card for today, or explore crystals and gems beside the deck.</p>
       </header>
+
+      <div className="home-links">
+        <Link to="/crystals" className="home-link-card">
+          <span className="home-link-mark" aria-hidden>
+            ✦
+          </span>
+          <span>
+            <strong>Crystals & Gems</strong>
+            <small>Common stones, meanings, and care</small>
+          </span>
+        </Link>
+        <Link to="/spreads" className="home-link-card">
+          <span className="home-link-mark" aria-hidden>
+            ✧
+          </span>
+          <span>
+            <strong>Spreads</strong>
+            <small>Single, three card, Celtic Cross</small>
+          </span>
+        </Link>
+      </div>
 
       {!drawn && (
         <div className="empty-draw">
@@ -55,11 +78,14 @@ export function HomePage() {
 
       {drawn && (
         <>
-          <CardDetail
-            card={drawn.card}
-            reversed={drawn.reversed}
-            position="Daily Card"
-          />
+          <DrawReveal drawn={drawn}>
+            <CardDetail
+              card={drawn.card}
+              reversed={drawn.reversed}
+              position="Daily Card"
+              hideImage
+            />
+          </DrawReveal>
           <label className="field">
             <span>Journal Note</span>
             <textarea

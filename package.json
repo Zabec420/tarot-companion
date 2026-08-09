@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "generate:icons": "node scripts/generate-icons.mjs"
+    "generate:icons": "node scripts/generate-icons.mjs",
+    "generate:crystals": "node scripts/generate-crystal-svgs.mjs"
   },
   "dependencies": {
     "react": "^19.2.8",
